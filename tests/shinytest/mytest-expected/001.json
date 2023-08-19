@@ -1,0 +1,23 @@
+{
+  "input": {
+    "a": "asdasd",
+    "b": 1,
+    "c": "asdasd",
+    "d": "asdads",
+    "e": "Paquetes, funciones,etc.",
+    "f": "Una distribución simétrica",
+    "g": "Estos componentes también se llaman 'capas'",
+    "h": "Verdadero",
+    "i": "Verdadero",
+    "next-1": 1,
+    "previous-2": 0,
+    "submit": 1,
+    "userID": "NO_USER_ID"
+  },
+  "output": {
+
+  },
+  "export": {
+
+  }
+}
