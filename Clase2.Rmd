@@ -1235,7 +1235,7 @@ Ver el caso del subset
 ---
 ## Ejercicio 1
 
-- Abra la [Guía de ejercicios 1.R](https://raw.githubusercontent.com/AGSCL/udp_2023/main/Gu%C3%ADa%20de%20ejercicios%201.R)
+- Abra la [Guía de ejercicios 1.R](https://github.com/AGSCL/udp_2023/blob/main/Gu%C3%ADa%20de%20ejercicios_Clase%201.R)
 
 ???
 *#_#_#_#_#_#_#_#_#_#_
