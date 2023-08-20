@@ -1530,6 +1530,20 @@ Describa las variables y juzgue su nivel y tipo de medición. Vea la estructura 
 
 - Obtenga el producto 82, para los fines de semana. 
 
+```{r, include=F}
+
+```
+
+---
+## Ejercicio 4
+
+- Importar `bbdd_prueba1` (https://raw.githubusercontent.com/AGSCL/udp_2023/main/_data/bbdd_prueba1.csv)
+(https://raw.githubusercontent.com/AGSCL/udp_2023/main/_data/bbdd_prueba1.dta)
+(https://raw.githubusercontent.com/AGSCL/udp_2023/main/_data/bbdd_prueba1.sav)
+
+
+- Complete la [guía de ejercicios](https://raw.githubusercontent.com/AGSCL/udp_2023/main/librerías e importación de datos.R) 
+
 ---
 class: center, middle
 

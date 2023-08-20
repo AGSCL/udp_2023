@@ -1649,6 +1649,13 @@ set.seed(3422);cbind.data.frame(tipo_personalidad=sample(rep(c("A","B"),80), 78,
 ]
 
 ---
+## Ejercicio 5
+
+- Importar `casen_red.sav` (https://raw.githubusercontent.com/AGSCL/udp_2023/main/_data/casen_red.sav)
+
+- Complete la [guía de ejercicios](https://raw.githubusercontent.com/AGSCL/udp_2023/main/Guía Estadistica descriptiva.R)
+
+---
 class: center, middle
 
 # Gracias!
