@@ -1462,9 +1462,9 @@ table(deporte_sex$deporte,deporte_sex$sexo)
 ---
 # Ejercicio 3
 
-- Importar `bbdd_prueba.xlsx` (https://raw.githubusercontent.com/AGSCL/udp_2023/main/_data/bbdd_prueba.xlsx)
+- Importar `bbdd_prueba.csv` (https://raw.githubusercontent.com/AGSCL/udp_2023/main/_data/bbdd_prueba1.csv)
 
-- Complete la [guía de ejercicios](https://raw.githubusercontent.com/AGSCL/udp_2023/main/Guía DPLYR.R) 
+- Complete la [guía de ejercicios](https://github.com/AGSCL/udp_2023/blob/main/Gu%C3%ADa%20DPLYR.R) 
 
 ---
 class: center, middle

@@ -1583,7 +1583,7 @@ boxplot(weight ~ Diet,  #FORMATO FÓRMULA
 
 - Crear un vector numérico con los siguientes datos: 25, 26, 27, 28, 28, 29, 25, 30, 29. Encuentre la media y la mediana.
 
-- En la clase se midió el grupo de sangre de 30 estudiantes de una clase como sigue: B, A, O, B, A, O, O, A, AB, O, A, A, B, O, O, AB, O, A, O, A, O, O, AB, B, A, O, B, A, B, O, B, A, O, B, A, B. Crear un vector categórico y representar estos datos como una tabla de frecuencias
+- En la clase se midió el grupo de sangre de 36 estudiantes de una clase como sigue: B, A, O, B, A, O, O, A, AB, O, A, A, B, O, O, AB, O, A, O, A, O, O, AB, B, A, O, B, A, B, O, B, A, O, B, A, B. Crear un vector categórico y representar estos datos como una tabla de frecuencias
 
   - ¿cuál es la moda?
 
@@ -1653,7 +1653,7 @@ set.seed(3422);cbind.data.frame(tipo_personalidad=sample(rep(c("A","B"),80), 78,
 
 - Importar `casen_red.sav` (https://raw.githubusercontent.com/AGSCL/udp_2023/main/_data/casen_red.sav)
 
-- Complete la [guía de ejercicios](https://raw.githubusercontent.com/AGSCL/udp_2023/main/Guía Estadistica descriptiva.R)
+- Complete la [guía de ejercicios](https://github.com/AGSCL/udp_2023/blob/main/Gu%C3%ADa%20Estadistica%20descriptiva.R)
 
 ---
 class: center, middle

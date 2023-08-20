@@ -1,3 +1,4 @@
+.Renviron
 .Rproj.user
 .Rhistory
 .RData
@@ -84,3 +85,5 @@ correo.Rmd
 *.rar
 canvas.Rmd
 _prueba/*
+#exclude ejercicios resueltos
+ej_clase?.Rmd

@@ -1530,10 +1530,6 @@ Describa las variables y juzgue su nivel y tipo de medición. Vea la estructura 
 
 - Obtenga el producto 82, para los fines de semana. 
 
-```{r, include=F}
-
-```
-
 ---
 ## Ejercicio 4
 
