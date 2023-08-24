@@ -1002,12 +1002,13 @@ knitr::kable(df, format = "markdown")
 ```
 ]
 
+.pull-left[
+
 - **Probabilidades**: La razón se incluye en el denominador
 
 .center[
 $\frac{p}{1}$
 ]
-
 .center[
 $\frac{a}{a+c}$
 ]
@@ -1020,15 +1021,31 @@ $\frac{p }{1-p}$
 .center[
 $\frac{a}{c}$
 ]
-
 .center[
 $\frac{\text{n de éxitos}}{\text{n de fracasos}}$
 ]
-
+]
+.pull-right[
 - **Odds Ratio**: Las chances de producirse el resultado esperado (outcome) en expuestos a una VI, en relación a las chances de experimentar el mismo resultado en no expuestos a una VI.
 
 .center[
 $OR = \frac{a \times d}{b \times c} = \frac{\frac{a}{c}}{\frac{b}{d}}$
+]
+.center[
+$P(E) = \frac{O(E)}{O(E)+1}= \frac{\frac{a}{c}}{\frac{a}{c}+1}$
+]
+
+- **Razón de prevalencia (PR)**: Razón de proporciones
+
+.center[
+
+$PR = \frac{P_A(E)}{P_B(E)} = \frac{\frac{a}{a+c}}{\frac{b}{b+d}}$
+
+]
+
+.small[
+Sea $P_A(E)$ la probabilidad de que se constate/presente la enfermedad en la condición A
+]
 ]
 
 ???
@@ -1037,7 +1054,8 @@ $OR = \frac{a \times d}{b \times c} = \frac{\frac{a}{c}}{\frac{b}{d}}$
 *#_#_#_#_#_#_#_#_#_#_
 
 - En general, el OR se desviará mucho del RR (Razón de proporciones), si la incidencia del resultados en no-expuestos excede el 10% (el resultado es común), y si el OR es mayor a 2,0 o menor a 0,5.
-
+- **Razón de prevalencia**: similar a la "razón de riesgos" pero aplicado a estudios transversales
+- A medida que las probabilidades aumentan, los odds tienden al infinito
 
 ---
 ## Correlación
@@ -1068,7 +1086,10 @@ ggplot(USArrests, aes(Murder, Rape))+ #incluimos las 2 variables, una en el eje 
 
 .details-code[
 
-```{r echo=T, out.width = '70%', fig.retina = 1, fig.align='center', results='hold', warning=F, message=F}
+```{r echo=T, fig.retina = 1, fig.align='center', results='hold', warning=F, message=F, fig.show = "hold", out.height="80%"}
+#, out.width = "50%"
+#par(mar = c(3.8, 3.8, .2, .2))
+par(mfrow=c(1,2))
 require(car)
 ####### Para cada columna del vector que contiene los valores
 ####### segunda_ola y primera_ola
@@ -1132,6 +1153,8 @@ Eje horizontal X, VI; Eje vertical Y, VD.
 ## Fuentes
 
 - Aron, A. & Aron, E. (2002). Estadística Para Psicología. Brasil. Prentice-Hall.
+
+- Ayçaguer, L. (1997). Cultura Estadística e Investigación Científica en el Campo de la Salud: Una Mirada Crítica. Díaz de Santos.
 
 - Glen, S. (s.f). "Bivariate Analysis Definition & Example" From StatisticsHowTo.com: Elementary Statistics for the rest of us! https://www.statisticshowto.com/bivariate-analysis/
 
