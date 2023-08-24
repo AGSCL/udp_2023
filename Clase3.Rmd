@@ -1141,7 +1141,6 @@ datos<- cbind.data.frame(nota= rnorm(200, 4, .5),#Generamos 200 números aleator
 #agregamos la columna para ver si pasa de curso
 datos$pasa<- ifelse(datos$nota>3.944,1,0)
 
-
 #_#_#_#_#_
 #OPC2. R Base, Virgulilla ~
 mosaicplot(~ pasa+ color_fav, 
@@ -1167,16 +1166,45 @@ $$\frac{1}{n} \sum_{i=1}^{n} a_{i} = \frac{a_{1} + a_{2} \dots + a_{n} }{n}$$
 
 - **Mediana (Mdn)**: Puntuación de la mitad en una distribución ordenada
 
-$$Mdn=L_i+ \frac{(\frac{N}{2}-F_{i-1})}{f_i}*x_i$$
+$$Mdn=L_i+ \frac{(\frac{N}{2}-F_{i-1})}{f_i}*a_i$$
+.pull-left[
+Número impar de observaciones: 
+$x_{\left( \frac{n+1}{2} \right)}$
 
+Numero empatado de observaciones: 
+$\frac{x_{\left( \frac{n}{2} \right)} + x_{\left( \frac{n}{2} + 1 \right)}}{2}$
+]
+
+.pull-right[
+.small[
+Sea:
+- $L_i$ = limite inferior de la en el que se encuentra la mediana
+- $\frac{N}{2}$ = frecuencias absolutas
+- $f_i$ = frecuencia absoluta del intervalo
+- $F_{i-1}$ = frecuencia acumulada anterior al intervalo mediano
+- $a_i$ = amplitud del intervalo
+- $n$ = número de observaciones
+- $x_i$ = i-ésimo valor observado
+]
+]
+.pull-left[
 - **Moda (Mo)**: Puntuación más frecuente
 
-$$ Mo=L_i+ (\frac{d_1}{d_1 + d_2})*x_i $$
-<br>
+para datos agrupados en una tabla de frecuencias: 
+$Mo=L_i+ (\frac{d_1}{d_1 + d_2})*a_i$
+]
+.pull-right[
 
-<br>
+.small[
+Sea:
+- $L_i$= límite inferior de la clase modal (mayor frecuencia)
+- $d_1$= diferencia entre la frecuencia de la clase modal y la clase anterior
+- $d_2$= diferencia entre la frecuencia de la clase modal y la clase posterior
+- $a_i$= ancho de la clase (diferencia entre el valor menor y mayor del intervalo)
+]
 
 .center[ .red[*“Hay dos panes. Usted se come dos. Yo ninguno. Consumo promedio: un pan por persona"* ] ]
+]
 
 <br>
 
