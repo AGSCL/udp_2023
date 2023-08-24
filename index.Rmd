@@ -54,3 +54,5 @@ Esta página está compuesta de los siguientes tópicos:
 - **Clase 4: Tidyverse** [.html](Clase4.html) [.pdf](Clase4.pdf)
 
 - **Clase 5: Visualización de datos con ggplot2** [.html](Clase5.html) [.pdf](Clase5.pdf)
+
+- **Extra: Aplicación estadística bivariada** [.html](Clase6.html) [.pdf](Clase6.pdf)

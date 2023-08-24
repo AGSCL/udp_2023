@@ -1317,6 +1317,8 @@ labs(x="N total beneficiados", y="Frecuencia", title="Histograma de número tota
 ---
 # Rmarkdown y Quarto
 
+.right[$Fuente: Prof.\,Matias\,Placencio-Castro\,(placenci@bc.edu)$]
+
 - **Markdown**: Lenguaje de marcado ligero para formatear texto.
 
 - Creador: John Gruber, 2004
@@ -1335,10 +1337,6 @@ labs(x="N total beneficiados", y="Frecuencia", title="Histograma de número tota
 - Integración fácil con Python y otros lenguajes.
 
 - Mejora en el procesamiento de Markdown en "trabajos".
-
-.right[
-$Fuente: Prof.\,Matias\,Placencio-Castro\,(placenci@bc.edu)$
-]
 
 .center_down_image[
 ```{r, "md", echo=F, warning=F, message=F}
@@ -1566,6 +1564,47 @@ $$
 *#_#_#_#_#_#_#_#_#_#_
 **NOTA**
 *#_#_#_#_#_#_#_#_#_#_
+
+
+---
+## Ejemplos (2)
+
+
+Necesario para hacer la interfaz con Python:
+
+`if(!require(reticulate)){install.packages("reticulate")}`
+
+````markdown
+`r ''````{python, "ejercicio-python", echo = F}
+import numpy as np
+np.random.seed(42) 
+data = np.random.randn(100)
+mean_data = np.mean(data)
+mean_data
+```
+`r ''````{r,"ejercicio-r", echo = F}
+set.seed(42) 
+r_data <- rnorm(100)
+mean_r_data <- mean(r_data)
+mean_r_data
+```
+````
+
+Salida:
+```{python, "ejercicio-python", echo = F, eval=TRUE, out.width = '50%', fig.align = 'center', fig.cap="Ejemplo markdown"}
+import numpy as np
+np.random.seed(42) 
+data = np.random.randn(100)
+mean_data = np.mean(data)
+mean_data
+```
+```{r, "ejercicio-r", echo = F}
+set.seed(42) 
+r_data <- rnorm(100)
+mean_r_data <- mean(r_data)
+mean_r_data
+```
+
 
 ---
 ## Ejercicio 5
