@@ -1160,7 +1160,7 @@ mosaicplot(~ pasa+ color_fav,
 
 - **Media (M)**: Suma de las puntuaciones dividido por el número de observaciones
 
-$$\frac{1}{n} \sum_{i=1}^{n} a_{i} = \frac{a_{1} + a_{2} \dots + a_{n} }{n}$$
+$$\frac{1}{n} \sum_{i=1}^{n-1} x_{i} = \frac{x_{1} + x_{2} \dots + x_{n-1} }{n}$$
 
 - **Tendencia central**: Centro de los datos ordenados según magnitud
 
@@ -1318,14 +1318,14 @@ gastos_casa_csv_2_naomit<-na.omit(gastos_casa_csv_2) #
 IQR(gastos_casa_csv_2_naomit$monto_en_miles)
 ```
 ]
-- **Varianza**: $\frac{1}{n} \sum_{i=1}^{n} (x_i-\bar{x})^2$
+- **Varianza**: $\frac{1}{n-1} \sum_{i=1}^{n} (x_i-\bar{x})^2$
 .details-code[
 ```{r varianza, echo=T, warning=F}
 gastos_casa_csv_2_naomit<-na.omit(gastos_casa_csv_2) #
 var(gastos_casa_csv_2_naomit$monto_en_miles)
 ```
 ]
-- **Desviación estándar**: $\sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i-\bar{x})^2}$
+- **Desviación estándar**: $\sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i-\bar{x})^2}$
 .details-code[
 ```{r desv, echo=T, warning=F}
 gastos_casa_csv_2_naomit<-na.omit(gastos_casa_csv_2) #
