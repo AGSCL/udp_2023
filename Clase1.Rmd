@@ -1585,7 +1585,7 @@ class: center, middle
 
 <br>
   
-<div class="centered"> Contacto: gonzalez.santacruz.andres@gmail.com y jose.ruiztaglem@gmail.com </div>
+<div class="centered"> Contacto: CANVAS </div>
 
 <br>
 
