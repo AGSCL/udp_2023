@@ -1,0 +1,54 @@
+---
+title: "GESTIÓN, REPRESENTACIÓN Y ANÁLISIS DE DATOS CUANTITATIVOS"
+description: |
+  
+site: distill::distill_article
+source_url: true
+author:
+  - name: Ruiz-Tagle Maturana, J.A. 
+    affiliation: |
+      Docente Fundación Instituto Profesional Duoc UC, Santiago, Chile; Investigador Joven, Núcleo Milenio nDP;
+      Programa de Doctorado en Políticas Públicas, Universidad Mayor, Santiago, Chile.
+    orcid_id: 0000-0002-4866-5701    
+  - name: González-Santa Cruz, A. 
+    affiliation: |
+      CISS, Universidad Mayor, Chile; Investigador Joven, Núcleo Milenio nDP;
+      Estudiante Doctorado en Salud Pública, Universidad de Chile
+    orcid_id: 0000-0002-5166-9121
+encoding: utf-8
+output:
+  distill::distill_article:
+    theme: theme.css
+    code_folding: true
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    output_dir: "docs"
+  toc_float:
+    collapsed: false
+    smooth_scroll: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+# Fecha: `r format(Sys.time(), '%d %B, %Y')`
+
+
+Esta página está compuesta de los siguientes tópicos:
+
+- **Clase 0: Pasos para crear un proyecto** [aquí](proyecto.html)
+
+- **Clase 1: Introducción a R y la investigación reproducible // Recursos en línea** [.html](Clase1_GRA.html) [.pdf](Clase1_GRA.pdf)
+
+- **Clase 2: Paquetes, funciones, objetos, medidas de resumen ** [.html](Clase2_GRA.html) [.pdf](Clase2_GRA.pdf)
+
+- **Clase 3: Exploración de datos y Estadística descriptiva** [.html](Clase3_GRA.html) [.pdf](Clase3_GRA.pdf)
+
+- **Clase 4: Tidyverse** [.html](Clase4_GRA.html) [.pdf](Clase4_GRA.pdf)
+
+- **Clase 5: Visualización de datos con ggplot2** [.html](Clase5_GRA.html) [.pdf](Clase5_GRA.pdf)
