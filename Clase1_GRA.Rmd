@@ -1371,10 +1371,8 @@ https://cran.r-project.org/doc/contrib/R-intro-1.1.0-espanol.1.pdf
 - Stackoverflow. How do I ask a good question?. https://stackoverflow.com/help/how-to-ask
 
 ```{r exp, eval=F,echo=F, results="asis"}
-library(pagedown)
-
+require(pagedown)
+gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path)
 #para exportar la presentación a PDF
-pagedown::chrome_print(gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path),output="pres_2022_1.pdf")
-xaringanBuilder::build_pdf(gsub(".Rmd",".Rmd",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="pres_2022_12.pdf")
-xaringanBuilder::build_pdf(gsub(".Rmd",".Rmd",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="pres_2022_13.pdf")
+xaringanBuilder::build_pdf(gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="Clase1_GRA.pdf")
 ```
