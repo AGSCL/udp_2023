@@ -1665,6 +1665,6 @@ knitr::include_graphics('./_style/cropped-logotipo_fsch.png')
 library(pagedown)
 gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path)
 #para exportar la presentación a PDF
-xaringanBuilder::build_pdf(gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="Clase3.pdf")
+xaringanBuilder::build_pdf(gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="Clase3_GRA.pdf")
 #xaringanBuilder::build_pdf(gsub(".Rmd",".Rmd",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="pres_2023_23.pdf")
 ```
