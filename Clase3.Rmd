@@ -867,10 +867,10 @@ class: animated, fadeIn
 ## Definiciones (1)
 
 - **Frecuencias $f$ **: Número de veces que un evento se repite
-    - Absoluta $f$
-    - Relativa $f_i$ 
-    - Acumulada $N_i$ 
-    - Relativa acumulada $F_i$ 
+    - Absoluta $f_i$
+    - Relativa $f_r$ 
+    - Acumulada $F_i$ 
+    - Relativa acumulada $F_r$ 
 
 - **Distribución de frecuencias**: Valores de los datos y frecuencia de aparición en orden. En algunos casos se agrupan por intervalos ("(56 -89])"
 
@@ -921,10 +921,8 @@ xout <- transform(xout, freq_cum = cumsum(Freq), freq_rel = prop.table(Freq), fr
 
 colnames(xout) <- c("Intervalo de clase", "Frecuencia", "Frec. acumulada", "Frec. relativa", "Frec. relativa acumulada")
 
-knitr::kable(xout,"markdown",
-             col.names= c('Intervalo',"$f$", "$f_i$","$N_i$","$F_i$"), escape=T)
+knitr::kable(xout,"markdown", escape=T)
 ```
-
 
 ???
 *#_#_#_#_#_#_#_#_#_#_
@@ -984,7 +982,7 @@ knitr::kable(prop.table(asistentes_curso_2020$condicion), "markdown")#requiere u
 knitr::kable(
   prop.table(table(asistentes_curso_2020$condicion,
                  asistentes_curso_2020$externo #se incluye otra variable
-                 )), "markdown")
+                 )), "markdown") #proporciones globales
 ```
 ]
 ]
@@ -1001,7 +999,7 @@ knitr::kable(
 prop.table(table(asistentes_curso_2020$condicion,
                  asistentes_curso_2020$externo
                  ),margin= 2), "markdown") #cambia la manera en que se calculan las proporciones
-# 1 = proporciones por filas, 2= por columnas, NULL =frecuencias globales.
+# 1 = proporciones por filas, 2= por columnas, NULL =proporciones globales.
 ```
 ]
 - Si cambia el eje, pero también el margin, ¿qué ocurre?
@@ -1032,6 +1030,7 @@ margin.table(table(asistentes_curso_2020$condicion,
 
 - Seleccionar velocidades altas en base a un vector de valores
 - Generar una matriz de distancia recorrida y velocidad (en mph)
+- No lo haga con todos los datos, hágalo con 
 
 .details[
 .details-code[
@@ -1046,11 +1045,12 @@ vec_vels<-c(23,24,25) # vector de velocidades altas seleccionadas
 
 .details-code[
 ```{r ej_mat_vec2, echo=T, size = 'tiny'}
+#seleccionas las velocidades 23 a la 25 de la base de datos
 sel_cars<- subset(cars, subset=speed %in% vec_vels)
 
 knitr::kable(
   table(sel_cars$speed, sel_cars$dist),  # filtro en base a un vector
-   "markdown") #matriz de velocidad por distancia
+   "markdown", caption= "Distancia según Velocidades (23-25)") #matriz de velocidad por distancia
 ```
 ]
 
@@ -1160,13 +1160,12 @@ mosaicplot(~ pasa+ color_fav,
 
 - **Media (M)**: Suma de las puntuaciones dividido por el número de observaciones
 
-$$\frac{1}{n} \sum_{i=1}^{n-1} x_{i} = \frac{x_{1} + x_{2} \dots + x_{n-1} }{n}$$
+$$\frac{1}{n} \sum_{i=1}^{n} x_{i} = \frac{x_{1} + x_{2} \dots + x_{n} }{n}$$
 
 - **Tendencia central**: Centro de los datos ordenados según magnitud
 
 - **Mediana (Mdn)**: Puntuación de la mitad en una distribución ordenada
 
-$$Mdn=L_i+ \frac{(\frac{N}{2}-F_{i-1})}{f_i}*a_i$$
 .pull-left[
 Número impar de observaciones: 
 $x_{\left( \frac{n+1}{2} \right)}$
@@ -1449,8 +1448,6 @@ Vamos a ir viendo otros gráficos útiles para explorar datos
 
 - **Percentiles ** $P{x}$ : Valor sobre la escala de medida sobre la cual se ubica un porcentaje de los datos de la distribución total. 
 
-$$ X_L + (i/f_i) (f_p acumulada- f_L acumulada)$$
-
 - **Cuartiles** $Q{x}$ : Valores de una variable en cuartos
 
   + ¿Qué percentil sería el rango mínimo?
@@ -1465,7 +1462,7 @@ $$ X_L + (i/f_i) (f_p acumulada- f_L acumulada)$$
  - Cuando las variables no se distribuyen de manera normal,  uno tiende a reportar la mediana y el rango intercuartil (Q1 -Q3)
  - También está el decil, el quintil, etc.
  - Con esta medida estamos dividiendo en partes la distirbución de la muestra
- - $X_L$ valor límite real inferior del intervalo que contiene al punto percentil ; $f_p$ acumulada=frecuencia de datos que están por debajo del punto percentil; $f_L$ acumulada= frecuencia de datos que está debajo delímite real inferior del intervalo que contiene al punto percentil ; $f_i$ = Frecuencia del intervalo que contiene al punto percentil; $i$ = Amplitud del intervalo
+ - $X_L$ valor límite real inferior del intervalo que contiene al punto percentil ; $f_p$ acumulada=frecuencia de datos que están por debajo del punto percentil; $f_L$ acumulada= frecuencia de datos que está debajo del límite real inferior del intervalo que contiene al punto percentil ; $f_i$ = Frecuencia del intervalo que contiene al punto percentil; $i$ = Amplitud del intervalo
 
 ---
 ## Aplicación

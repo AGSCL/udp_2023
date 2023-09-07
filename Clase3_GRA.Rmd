@@ -922,8 +922,7 @@ xout <- transform(xout, freq_cum = cumsum(Freq), freq_rel = prop.table(Freq), fr
 
 colnames(xout) <- c("Intervalo de clase", "Frecuencia", "Frec. acumulada", "Frec. relativa", "Frec. relativa acumulada")
 
-knitr::kable(xout,"markdown",
-             col.names= c('Intervalo',"$f_i$", "$F_i$","$f_r$","$F_r$"), escape=T)
+knitr::kable(xout,"markdown", escape=T)
 ```
 
 
@@ -985,7 +984,7 @@ knitr::kable(prop.table(asistentes_curso_2020$condicion), "markdown")#requiere u
 knitr::kable(
   prop.table(table(asistentes_curso_2020$condicion,
                  asistentes_curso_2020$externo #se incluye otra variable
-                 )), "markdown")
+                 )), "markdown") # proporciones globales
 ```
 ]
 ]
@@ -1002,7 +1001,7 @@ knitr::kable(
 prop.table(table(asistentes_curso_2020$condicion,
                  asistentes_curso_2020$externo
                  ),margin= 2), "markdown") #cambia la manera en que se calculan las proporciones
-# 1 = proporciones por filas, 2= por columnas, NULL =frecuencias globales.
+# 1 = proporciones por filas, 2= por columnas, NULL =proporciones globales.
 ```
 ]
 - Si cambia el eje, pero también el margin, ¿qué ocurre?
