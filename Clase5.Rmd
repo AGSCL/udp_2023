@@ -1592,6 +1592,8 @@ mean_r_data
 
 Salida:
 ```{python, "ejercicio-python", echo = F, eval=TRUE, out.width = '50%', fig.align = 'center', fig.cap="Ejemplo markdown"}
+import os
+os.system("pip install numpy")
 import numpy as np
 np.random.seed(42) 
 data = np.random.randn(100)
@@ -1605,6 +1607,10 @@ mean_r_data <- mean(r_data)
 mean_r_data
 ```
 
+???
+*#_#_#_#_#_#_#_#_#_#_
+**NOTA**
+*#_#_#_#_#_#_#_#_#_#_
 
 ---
 ## Ejercicio 5
@@ -1618,6 +1624,47 @@ Despliegue el siguiente ejercicio en un markdown en formato .html
   - Obtenga la media y la mediana, según corresponda al tipo de variable y nivel de medición.
   
   - **EXTRA**: Obtenga una tabla de 2 vías, según corresponda al tipo de variable y nivel de medición.
+
+---
+## Ejercicio 6
+
+De los datos sobre interrupción voluntaria del embarazo, genere un gráfico de lineas en que el eje x sea el AÑO y las líneas sean la frecuencia. Cada línea debe representar cada causal (rojo= Causal 1: Peligro para la vida de la mujer; azul=Causal 2: Inviabilidad fetal de carácter letal; morado= Causal 3: Embarazo por violación), **utilizando tidyverse**
+
+```{r,"ej 6", out.width = '50%', fig.align = 'center'}
+#https://deis.minsal.cl/#tableros
+#notese, que no escribimos con ñ por notación
+data_df <- data.frame(
+  ANIO = c(2018, 2018, 2018, 2019, 2019, 2019, 2020, 2020, 2020, 2021, 2021, 2021, 2022, 2022, 2022, 2023, 2023, 2023),
+  Frecuencia = c(262, 346, 124, 267, 414, 137, 160, 348, 154, 250, 442, 130, 254, 368, 209, 103, 162, 142),
+  CAUSAL = c("Causal 1", "Causal 2", "Causal 3", "Causal 1", "Causal 2", "Causal 3", "Causal 1", "Causal 2", "Causal 3",
+             "Causal 1", "Causal 2", "Causal 3", "Causal 1", "Causal 2", "Causal 3", "Causal 1", "Causal 2", "Causal 3")
+
+)
+
+#Ejemplo de un gráfico con el total, sin división en causales
+data_df %>% 
+    group_by(ANIO) %>% 
+    summarise(total=sum(Frecuencia, na.rm=T)) %>% 
+    ggplot(aes(ANIO, total, group=1))+ #en algunos casos podría solicitarle el último argumento
+    geom_point()+ #líneas
+  theme_minimal() #temática
+```
+
+
+???
+*#_#_#_#_#_#_#_#_#_#_
+**NOTA**
+*#_#_#_#_#_#_#_#_#_#_
+
+ggplot(data = data_df, aes(x = ANIO, y = Frecuencia, color = CAUSAL)) +
+  geom_line() +
+  scale_color_manual(values = c("red", "blue", "purple"), 
+                     breaks = c("Causal 1", "Causal 2", "Causal 3"),
+                     labels = c("Causal 1: Peligro para\nla vida de la mujer",
+                                "Causal 2: Inviabilidad\nfetal de carácter letal",
+                                "Causal 3: Embarazo\npor violación")) +
+  labs(x = "Año", y = "Frecuencia", color = "Causal") +
+  theme_minimal()
 
 ---
 class: center, middle

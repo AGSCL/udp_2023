@@ -1,0 +1,155 @@
+---
+title: "Prueba 1, Respuestas"
+author: "Profesor: Andres Gonzalez-Santa Cruz y José Ruiz-Tagle"
+subtitle: "Password: rmarkdown"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  fidelius::html_password_protected:
+    style:
+      button_text: "Ingresar clave"
+#    password: "`r Sys.getenv('Key1')`" #no evalúa si no que es tomado literal. Está en .Renviron
+    preview: false
+    hint: ".Rmd"
+    bundle: true
+    minified: false
+    output_format: 
+      rmarkdown::html_document:
+        toc: true # table of content true
+        toc_depth: 5  # upto three depths of headings (specified by #, ## and ###)
+        toc_float: true
+        code_download: true
+        theme: paper
+---
+
+# Item 1
+
+#1. RStudio no permite la creación de un proyecto con la extensión. Rproj.
+#Falso.
+
+#2. RStudio es un Entorno de Desarrollo Integrado para R.
+#Verdadero.
+
+#3. Todos los softwares estadísticos se utilizan exclusivamente para investigación.
+#Falso. 
+
+#4. En R, una matriz es una tabla multidimensional que tiene filas, columnas y otras capas.
+#Falso. 
+
+#5. Un tibble en R es una nueva configuración de un data frame que no fuerza a columnas de caracteres a factores.
+#Verdadero.
+
+
+# Item 2
+
+#1. ¿Qué tipo de archivo permite guardar múltiples datos, objetos, funciones, etc., en RStudio?
+#c) .Rdata
+
+#2. 2. ¿Cuál de las siguientes opciones es una ventaja de RStudio mencionada en clases?
+#b) Control de versiones (ej., GitHub)
+
+#3. ¿Qué representa el Rango Intercuartílico (RIC)?
+#b) Q3 menos Q1
+
+#4. ¿Qué representa la "Mediana (Mdn)"?
+#b) Puntuación de la mitad en una distribución ordenada
+
+# Item 3
+
+**1) Utilice la base de datos pinochet, que incluye información a partir del informe de la**
+**Comisión de la Verdad de Chile, publicado en 1991 y que investigó las violaciones a los**
+**derechos humanos con consecuencia de muerte ocurridas entre 1973 y 1990. Este**
+**informe contiene los nombres de 2.279 víctimas, sus circunstancias y los responsables**
+**identificados.**
+
+```{r 0, echo=T, message=T, error=T, eval=T, results='hold'}
+### 0. Limpiar completamente el entorno global environment
+rm(list = ls()) 
+
+### 1. Cargar y activar paquetes 
+
+#si carga dplyr, aunque no era necesario
+if(!require(dplyr)){install.packages("dplyr")}
+#si carga todos los paquetes compuestos por tidyverse
+if(!require(tidyverse)){install.packages("tidyverse")}
+#si no utiliza la importación base
+if(!require(readxl)){install.packages("readxl")}
+
+#si utiliza psych
+if(!require(psych)){install.packages("psych")}
+```
+
+```{r 1, results="hold"}
+#modo base
+pinochet <- read.delim("https://raw.githubusercontent.com/danilofreire/pinochet/master/data/pinochet.csv", sep=",")
+#modo readxl
+pinochet2 <- read.csv("https://raw.githubusercontent.com/danilofreire/pinochet/master/data/pinochet.csv") 
+#modo rio
+if(!require(rio)){install.packages("rio")}
+pinochet3 <- rio::import("https://raw.githubusercontent.com/danilofreire/pinochet/master/data/pinochet.csv")
+```
+
+**2) Desarrollar un código que permita identificar si las siguientes afirmaciones son**
+**verdaderas o falsas. Su respuesta debe estar fundamentada en la información que**
+**contiene la base de datos**
+
+a) La edad promedio de los hombres es menor a la de las mujeres.
+
+```{r 2a, results='hold'}
+#manera base
+mean(pinochet$age[pinochet$male == 1], na.rm = TRUE)
+
+mean(pinochet$age[pinochet$male == 0], na.rm = TRUE)
+
+#aggregate
+aggregate(age~male, data= pinochet,mean)
+
+#manera psych
+psych::describeBy(pinochet$age, group=pinochet$male)
+
+#t test (ver supuestos)
+t.test(pinochet$age~ pinochet$male)
+```
+
+b) Las personas más jóvenes en promedio fueron asesinadas en comparación a otras formas de violencia.
+
+```{r 2b, results='hold'}
+#aggregate
+aggregate(age~violence, data= pinochet,mean)
+
+#manera psych
+psych::describeBy(pinochet$age, group=pinochet$violence)
+
+#anova test (ver supuestos), posiblemente deba hacer análisis post-hoc, de cumplirse los supuestos
+oneway.test(pinochet$age~ pinochet$violence)
+```
+
+c) La mayoría de las personas desaparecidas eran extranjeras
+
+```{r 2c, results='hold'}
+pinochet$nacionalidad <- ifelse(grepl("Chilean", pinochet$nationality), "chilena", "extranjero")
+pinochet$desaparicion <- ifelse(grepl("Disappearance", pinochet$violence), "desaparecidos", "no desaparecidos")
+
+table(pinochet$nacionalidad, pinochet$desaparicion)
+
+
+#forma integrada, base
+print("Desaparecidos no chilenos")
+length(which(!grepl("Chilean", pinochet$nationality) & grepl("Disappearance", pinochet$violence)))
+
+print("Desaparecidos chilenos")
+length(which(grepl("Chilean", pinochet$nationality) & grepl("Disappearance", pinochet$violence)))
+
+#aggregate
+aggregate(pinochet$desaparicion, by = list(pinochet$nacionalidad), FUN = table)
+
+#janitor
+if(!require(janitor)){install.packages("janitor")}
+pinochet %>% 
+janitor::tabyl(nacionalidad, desaparicion)
+
+#dplyr
+pinochet %>% 
+ group_by(nacionalidad) %>%
+  count(desaparicion, sort = TRUE)
+
+```
