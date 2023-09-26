@@ -1,5 +1,5 @@
 ---
-title: "Prueba 1, Respuestas"
+title: "Taller 1, Respuestas"
 author: "Profesor: Andres Gonzalez-Santa Cruz y José Ruiz-Tagle"
 subtitle: "Password: rmarkdown"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
