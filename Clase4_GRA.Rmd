@@ -1,7 +1,8 @@
 ---
 title: "Clase 4"
-author: "Andrés González"
+author: "José Ruiz-Tagle y Andrés González"
 date:  "`r withr::with_locale(new =c('LC_TIME' = 'es_ES'), code =format(Sys.time(),'%B %d, %Y'))`"
+encoding: utf-8
 output:
   xaringan::moon_reader:
     includes:
@@ -1573,9 +1574,7 @@ unlink("*_cache", recursive = T, force= T)
 
 ```{r exp, eval=F,echo=F, results="asis"}
 library(pagedown)
-
+gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path)
 #para exportar la presentación a PDF
-pagedown::chrome_print(gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path),output="pres_2022_3.pdf")
-xaringanBuilder::build_pdf(gsub(".Rmd",".Rmd",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="Clase4.pdf")
-#xaringanBuilder::build_pdf(gsub(".Rmd",".Rmd",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="pres_2022_13.pdf")
+xaringanBuilder::build_pdf(gsub(".Rmd",".html",rstudioapi::getSourceEditorContext()$path),complex_slides = TRUE,output_file="Clase4_GRA.pdf")
 ```
