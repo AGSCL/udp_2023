@@ -1239,8 +1239,8 @@ knitr::include_graphics('_figs/perkin_R.png')
 ---
 ## Ejercicio
 - Ingrese a la versión cloud de JAMOVI
-- Abra el [proyecto.omv](LINK DE GITHUB)
-- Abra el [proyecto2.omv](LINK DE GITHUB)
+- Abra el [proyecto.omv](https://github.com/AGSCL/udp_2023/raw/main/proyecto.omv)
+- Abra el [proyecto2.omv](https://github.com/AGSCL/udp_2023/raw/main/proyecto2.omv)
 
 ---
 ## Fuentes
