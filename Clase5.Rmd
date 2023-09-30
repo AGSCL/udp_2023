@@ -1150,12 +1150,13 @@ st %>%
 ---
 ## Ejercicio 1
 
-- Con los siguientes datos (`mtcars`), llegue al siguiente gráfico:
+- Con los siguientes datos (`mtcars`), llegue al siguiente gráfico (tip: busque facet_grid):
 
 ```{r, include=F, eval=F}
 ggplot(data = mtcars) + 
   geom_point(aes(mpg, qsec, colour = factor(am))) +
-  facet_grid(~vs)
+  facet_grid(~vs)+
+  caption("Nota. imagen divida en función de forma en V del motor (0 y 1)")
 ```
 
 ```{r, echo=FALSE,  fig.align="center", out.width=250, error=T}
@@ -1168,6 +1169,10 @@ knitr::include_graphics('./_figs/descarga.png')
 **NOTA**
 *#_#_#_#_#_#_#_#_#_#_
 
+ggplot(data = mtcars) + 
+  geom_point(aes(mpg, qsec, colour = factor(am))) +
+  facet_grid(~vs)
+  
 ---
 ## Otros paquetes relacionados
 
@@ -1222,7 +1227,7 @@ ggplot2::ggplot() +
 
 - Genere el gráfico que corresponda para analizar la distribución de los datos presentados más abajo. De acuerdo a las lecturas y fuentes que corresponda (busque en internet), indique su distribución.
 
-- set.seed(2125);datos<-runif(100,50,500)
+- set.seed(2125);datos<-data.frame(caso=runif(100,50,500))
 
 ```{r message=FALSE, warning=FALSE, paged.print=FALSE, out.width = '400cm', out.height='400cm', fig.align = "center", eval=F, include=F}
 datos %>%
@@ -1233,7 +1238,6 @@ datos %>%
   theme_minimal()
 # Uniforme, aunque podría describirse como bimodal, o una distribución dirichlet en la que cada agrupación representa distribuciones latentes superpuestas en torno a una cateogría K; O una funcion de probabilidad binomial con distinto número de  éxitos
 ```
-
 
 - Use la base `ChickWeight` y haga un diagrama de puntos entre el tiempo y el peso. Grafique la dispersión de los puntos y añada una línea suavizada (`smooth`) para ver si hay alguna tendencia. Añada etiquetas y un tema en blanco y negro.
 
@@ -1315,9 +1319,9 @@ labs(x="N total beneficiados", y="Frecuencia", title="Histograma de número tota
 *#_#_#_#_#_#_#_#_#_#_
 
 ---
-# Rmarkdown y Quarto
+# Introducción a Rmarkdown y Quarto
 
-.right[$Fuente: Prof.\,Matias\,Placencio-Castro\,(placenci@bc.edu)$]
+.right[$$Fuente: Prof.\,Matias\,Placencio-Castro\,(placenci@bc.edu)$$]
 
 - **Markdown**: Lenguaje de marcado ligero para formatear texto.
 
@@ -1404,6 +1408,12 @@ image_colorize(image_read(path = "./_figs/md.png"),35,"red")
 ---
 ## Estructura (1): YAML
 
+- Debe ir al principio de cada documento y entre "---" tanto al principio como al final de esta sección
+
+- Respete la indentación (ej., espacios como "   " para definir jerarquías de los argumentos del YAML)
+
+- **Metadatos**: Hablan de la estructura del documento (ej., nombre, título). Cuando usted saca una foto, ésta tiene una fecha, el nombre de la cámara, información sobre la profundidad de la imagen, la resolución etc. Esta es similar.
+
 .pull-left[
 ````markdown
 ---
@@ -1442,6 +1452,8 @@ output: pdf_document
 ````
 
 - PDF (xelatex)
+
+- Si el anterior metadato para exportar a PDF no le funciona, puede instalar 'tinytex'
 
 ````markdown
 ---
