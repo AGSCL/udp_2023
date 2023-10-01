@@ -1417,10 +1417,10 @@ image_colorize(image_read(path = "./_figs/md.png"),35,"red")
 .pull-left[
 ````markdown
 ---
-title: "Untitled"
-author: "ags"
-date: '2023-08-15'
-output: html_document
+title: "Untitled" # sección de título
+author: "ags" # autor
+date: '2023-08-15' # fecha
+output: html_document # formato de salida del documento
 ---
 
 ````
@@ -1429,9 +1429,9 @@ output: html_document
 
 ````markdown
 ---
-title: "Untitled"
-format: html
-editor: visual
+title: "Untitled" # sección de título
+format: html # formato de salida del documento
+editor: visual # interfaz gráfica que permite editar documentos sin tener que saber markdown
 ---
 
 ````
@@ -1447,7 +1447,7 @@ editor: visual
 title: "Untitled"
 author: "ags"
 date: '2023-08-15'
-output: pdf_document
+output: pdf_document # para exportar a pdf
 ---
 ````
 
@@ -1460,7 +1460,7 @@ output: pdf_document
 title: "Untitled"
 author: "ags"
 date: '2023-08-15'
-output:
+output: # tenga en cuenta el indentado, la separación jerárquica de cada línea
    pdf_document:
      latex_engine: xelatex
 ---
