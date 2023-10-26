@@ -7,7 +7,6 @@ output:
   fidelius::html_password_protected:
     style:
       button_text: "Ingresar clave"
-#    password: "`r Sys.getenv('Key1')`" #no evalúa si no que es tomado literal. Está en .Renviron
     preview: false
     hint: "apps en r"
     bundle: true
@@ -95,7 +94,16 @@ b) Proporciona las líneas horizontales y verticales del gráfico
 c) Separa las observaciones que están a la izquierda de las que están en la derecha
 
 
+**Respuestas**
+
+| I.1.a | I.1.b | I.1.c | I.1.d | I.1.e | I.2.1 | I.2.2 | I.2.3 |
+|---|---|---|---|---|---|---|---|
+| F | F | V | T | F | a | b | a |
+
+
 <br>
+
+---
 
 # II) Aplicación: Trauma ocular
 
@@ -111,13 +119,18 @@ if(!require(dplyr)){install.packages("dplyr")}
 if(!require(tidyverse)){install.packages("tidyverse")}
 ```
 
-**Importe la siguiente base de datos**
+**Importe la siguiente base de datos** 
 
 ```{r, error=T}
 data15a64_rn_ratio_its <- 
   haven::read_dta("https://drive.google.com/uc?export=download&id=1IJ-fkYu3JMKaN5hVcFhuKhOBwYkQVWWw")
 # si no funciona: if(!require(rio)){install.packages("rio")}; require(rio);rio::import("https://drive.google.com/uc?export=download&id=1IJ-fkYu3JMKaN5hVcFhuKhOBwYkQVWWw")
 ```
+
+```{r}
+warning("(ojo, por reproducibilidad debe agregar cómo obtuvo los datos)")
+```
+
 
 El estudio buscaba determinar si durante el período de mayor confrontación entre  protestantes y carabineros en Santiago, hubo un incremento en las admisiones a  servicios de urgencia debido a lesiones o eventos traumáticos relacionados con las manifestaciones. Se planteó que, además, las dificultades de acceso a la  atención médica durante este período podrían haber llevado a un retraso en las consultas, resultando en una mayor gravedad de los casos presentados y, por ende, en una mayor necesidad de hospitalización.
  
@@ -127,10 +140,13 @@ Con esta información, se construyó una serie temporal que considera 10 semanas
 
 **II. 1) Entregue valores descriptivos como media, desviación estándar, percentiles 25, 50 y 75 y utilizando tidyverse, de la razón de las hospitalizaciones (`hosp_trauma`) por consultas (`cons_trauma`), antes del evento de interés (2019-10-18, pero entendiendo que se agruparon los recuentos por semanas, el primer día de la semana siguiente fue 2019-10-21) (inscrito en la variable `did`). ¿Qué puede interpretar de lo siguiente? ¿las razones de hospitalizaciones por consultas son iguales antes y posterior al periodo? (3 puntos)**
 
-```{r, include=F}
+```{r, include=T}
 data15a64_rn_ratio_its %>%
+  #generamos el ratio
   dplyr::mutate(hosp_cons= hosp_trauma/cons_trauma) %>%
+  #agrupamos por la separación
   dplyr::group_by(did) %>%
+  #generamos las medidas de resumen
   dplyr::summarise(mean_hosp_cons=mean(hosp_cons,na.rm=T),
                    sd_hosp_cons=sd(hosp_cons,na.rm=T),
                    p25=quantile(hosp_cons,.25,na.rm=T),
@@ -145,11 +161,14 @@ data15a64_rn_ratio_its %>%
 
 **Punto adicional**: añada una linea vertical que marca el evento de interés (2019-10-18), en rojo y con un ancho de 1**
 
-```{r, include=F}
+```{r, include=T}
   dplyr::mutate(data15a64_rn_ratio_its, hosp_cons= hosp_trauma/cons_trauma) %>%
   ggplot()+
+  #añado líneas
   geom_line(aes(x=date, y=hosp_cons, group=1))+
+  #añado al capa de puntos
   geom_point(aes(x=date, y=hosp_cons, group=1))+
+  #genero la línea separadora
     geom_vline(aes(xintercept = as.Date("2018-10-18")), color="red", linewidth=1) +
     theme_classic()+
     labs(x="Fecha", y="Razón de hospitalizaciones por consultas", title="Gráfico")
@@ -184,7 +203,7 @@ Péguelo en un excel.
 2) Los países deben estar ordenados de mayor a menor tasa.
 3) Punto adicional: El eje Y debe estar en escala logarítmica
 
-```{r, include=F, error=T}
+```{r, include=T, error=T}
 
 unodc <- cbind.data.frame(
     Region = c("Americas", "Americas", "Americas", "Americas", "Americas", "Americas", "Americas", "Americas", "Americas", "Americas", "Americas", "Americas"),
@@ -209,4 +228,20 @@ unodc %>%
 ```
 
 **Punto adicional**: genere este archivo en formato Rmarkdown.
+
+```{r}
+
+unodc %>% 
+  #genero la transformación logarítmica
+    dplyr::mutate(log_value= ifelse(log(Primera.fecha..Value.fmt)<0,0,log(Primera.fecha..Value.fmt))) %>% 
+    # Genero el gráfico de barras
+    ggplot(aes(x = reorder(Country, desc(Primera.fecha..Value.fmt)), y =log_value)) +
+    geom_bar(stat = "identity") +
+    #añadir las etiquetas de ejes y títulos
+    labs(title = "Tasa de Violencia Sexual por 100,000 habitantes en las Américas (2021)",
+         x = "País",
+         y = "Tasa (Logarítmica)",
+         caption = "Nota. Valores en escala logarítmica menores a 0, se reemplazan por 0") +
+    theme_minimal()
+```
 
